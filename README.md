@@ -28,3 +28,8 @@ Now you can visit [`localhost:3000`](http://localhost:4000) from your browser or
 ```bash
 curl "localhost:4000"
 ```
+
+## Thinking
+
+* Integer max size in postgres is done with a check constraint. Could have been decimal, but exercise ask for integer.
+* timestamps field or 2 timestamp ? i went with the 2 from ecto

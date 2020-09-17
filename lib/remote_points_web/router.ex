@@ -5,7 +5,9 @@ defmodule RemotePointsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", RemotePointsWeb do
+  scope "/", RemotePointsWeb do
     pipe_through :api
+
+    get "/", UserController, :show
   end
 end
