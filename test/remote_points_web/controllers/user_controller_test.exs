@@ -5,12 +5,8 @@ defmodule RemotePointsWeb.UserControllerTest do
   alias RemotePoints.Points.User
 
   @create_attrs %{
-    points: 42
+    points: 100
   }
-  @update_attrs %{
-    points: 43
-  }
-  @invalid_attrs %{points: nil}
 
   def fixture(:user) do
     {:ok, user} = Points.create_user(@create_attrs)
@@ -21,15 +17,11 @@ defmodule RemotePointsWeb.UserControllerTest do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
-  # describe "index" do
-  #   test "lists all users", %{conn: conn} do
-  #     conn = get(conn, Routes.user_path(conn, :index))
-  #     assert json_response(conn, 200)["data"] == []
-  #   end
-  # end
-
-  defp create_user(_) do
-    user = fixture(:user)
-    %{user: user}
+  describe "show" do
+    test "lists users", %{conn: conn} do
+      user = fixture(:user)
+      conn = get(conn, Routes.user_path(conn, :show))
+      assert json_response(conn, 200)["users"] == [%{"id" => user.id, "points" => user.points}]
+    end
   end
 end

@@ -5,8 +5,8 @@ defmodule RemotePointsWeb.UserController do
 
   action_fallback RemotePointsWeb.FallbackController
 
-  # def show(conn, _params) do
-  #   users = Updater.get_max_2_users()
-  #   render(conn, "show.json", users: users)
-  # end
+  def show(conn, _params) do
+    {users, time} = Updater.get_max_2_users()
+    render(conn, "show.json", users: users, time: time)
+  end
 end
