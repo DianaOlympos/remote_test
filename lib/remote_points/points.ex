@@ -101,4 +101,24 @@ defmodule RemotePoints.Points do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  @doc """
+  Returns the list of users with strictly more points than max_points.
+  Limit the list to 2 users maximum
+
+  ## Examples
+
+      iex> get_max_2_users_with_max_points(0)
+      [%User{}, ...]
+
+  """
+  def get_max_2_users_with_max_points(max_points) do
+    query =
+      from u in User,
+      limit: 2,
+      where: u.points > ^max_points,
+      select: u
+
+    Repo.all(query)
+  end
 end

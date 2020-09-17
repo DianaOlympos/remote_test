@@ -8,7 +8,7 @@ defmodule RemotePoints.PointsTest do
 
     @valid_attrs %{points: 42}
     @update_attrs %{points: 43}
-    @invalid_attrs %{points: nil}
+    @invalid_attrs %{points: 101}
 
     def user_fixture(attrs \\ %{}) do
       {:ok, user} =

@@ -3,7 +3,7 @@ defmodule RemotePoints.Points.User do
   import Ecto.Changeset
 
   schema "users" do
-    field :points, :integer
+    field :points, :integer, default: 0
 
     timestamps()
   end

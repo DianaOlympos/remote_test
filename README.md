@@ -33,3 +33,5 @@ curl "localhost:4000"
 
 * Integer max size in postgres is done with a check constraint. Could have been decimal, but exercise ask for integer.
 * timestamps field or 2 timestamp ? i went with the 2 from ecto
+* I use the context because why not, the generator do it
+* It is understood that the users returned will be the one from the current handle_call. Only the timestamp will be from the previous handle_call. Otherwise bootstrap problem. Can be solved but not in the requirements anymore

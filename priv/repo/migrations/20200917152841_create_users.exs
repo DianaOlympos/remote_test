@@ -3,7 +3,7 @@ defmodule RemotePoints.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
-      add :points, :integer
+      add :points, :integer, default: 0
 
       timestamps()
     end
