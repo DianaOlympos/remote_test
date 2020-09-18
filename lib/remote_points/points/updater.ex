@@ -17,7 +17,7 @@ defmodule RemotePoints.Points.Updater do
 
   @impl GenServer
   def init(_empty) do
-    max_number = :rand.uniform(100)
+    max_number = :rand.uniform(101) - 1
     Process.send_after(self(), :update, @mill_min)
     {:ok, time} = DateTime.now("Etc/UTC")
     {:ok, %{max_number: max_number, last_call: time}}
@@ -26,9 +26,10 @@ defmodule RemotePoints.Points.Updater do
   @impl GenServer
   def handle_info(:update, state) do
     Points.list_users()
-    |> Enum.map(&Points.change_user(&1, %{points: :rand.uniform(100)}))
+    |> Enum.map(&Points.update_user(&1, %{points: :rand.uniform(101) - 1}))
 
-    {:no_reply, %{state | max_number: :rand.uniform(100)}}
+    Process.send_after(self(), :update, @mill_min)
+    {:noreply, %{state | max_number: :rand.uniform(100) - 1}}
   end
 
   @impl GenServer
